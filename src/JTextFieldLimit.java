@@ -16,10 +16,11 @@ class JTextFieldLimit extends PlainDocument {
     this.limit = limit;
   }// end JTextFieldLimit
 
-  JTextFieldLimit(int limit, boolean upper) {
-    super();
-    this.limit = limit;
-  }// end JTextFieldLimit
+  //////This constructor is never used
+ /// JTextFieldLimit(int limit, boolean upper) {
+  ///  super();
+ ///   this.limit = limit;
+ //// }// end JTextFieldLimit
 
   public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
     if (str == null)
