@@ -748,13 +748,31 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			valid = false;
 		} // end if
 		try {// try to get values from text field
-			Double.parseDouble(salaryField.getText());
+			/// Checking salary format 
+			///Double.parseDouble(salaryField.getText());
+			
+			double salary = Double.parseDouble(salaryField.getText());
+			
+			String format_string = format.format(salary);
+			
+	////////Formating the salary and checking limits
+			
 			// check if salary is greater than 0
-			if (Double.parseDouble(salaryField.getText()) < 0) {
+			//if (Double.parseDouble(salaryField.getText()) < 0) {
+			
+			if (salary < 0){
 				salaryField.setBackground(new Color(255, 150, 150));
 				valid = false;
-			} // end if
-		} // end try
+				
+			} else if (format_string.length()>20){
+				///Check formated string for salary
+				salaryField.setBackground(new Color(255, 150, 150));
+				valid = false;
+			}
+			
+			}
+			///} // end if
+		//} // end try
 		catch (NumberFormatException num) {
 			if (salaryField.isEditable()) {
 				salaryField.setBackground(new Color(255, 150, 150));
