@@ -53,7 +53,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	// decimal format for inactive currency text field
 	private static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
 	// decimal format for active currency text field
-	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
+	//private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	// hold object start position in file
 	private long currentByteStart = 0;
 	private RandomFile application = new RandomFile();
@@ -613,7 +613,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// activate field for editing if there is records to display
 		if (isSomeoneToDisplay()) {
 			// remove euro sign from salary text field
-			salaryField.setText(fieldFormat.format(currentEmployee.getSalary()));
+			//salaryField.setText(fieldFormat.format(currentEmployee.getSalary()));
 			change = false;
 			setEnabled(true);// enable text fields for editing
 		} // end if

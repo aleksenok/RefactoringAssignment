@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -27,6 +28,8 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	JButton save, cancel;
 	EmployeeDetails parent;
+	/////Deimal format for inactive currency text field
+	private static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
 	// constructor for add record dialog
 	public AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
@@ -150,12 +153,20 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 			valid = false;
 		}// end if
 		try {// try to get values from text field
-			Double.parseDouble(salaryField.getText());
+			//Double.parseDouble(salaryField.getText());
+			double salary = Double.parseDouble(salaryField.getText());
+			//Formatting salary
+			String format_string = format.format(salary);
 			// check if salary is greater than 0
 			if (Double.parseDouble(salaryField.getText()) < 0) {
+			//if (salary < 0){
 				salaryField.setBackground(new Color(255, 150, 150));
 				valid = false;
-			}// end if
+			}else if (format_string.length() > 20){//check the formatted string of the salary exceed limit of textfield
+				salaryField.setBackground(new Color(255, 150, 150));
+				valid = false;
+			}
+			// end if
 		}// end try
 		catch (NumberFormatException num) {
 			salaryField.setBackground(new Color(255, 150, 150));
