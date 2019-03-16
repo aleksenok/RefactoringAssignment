@@ -949,13 +949,17 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			catch (IOException e) {
 			} // end catch
 		} // end if
+		//// After clicking save file set the changesMade to  false
 		changesMade = false;
+		
 	}// end saveFileAs
 
 	// allow to save changes to file when exiting the application
 	private void exitApp() {
-		// if file is not empty allow to save changes
-		if (file.length() != 0) {
+		// if file is not empty allow to save changes 
+		// And also not containing any records
+		application.openReadFile(file.getAbsolutePath());
+		if (file.length() != 0 && application.isSomeoneToDisplay()) {
 			if (changesMade) {
 				int returnVal = JOptionPane.showOptionDialog(frame, "Do you want to save changes?", "Save",
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
