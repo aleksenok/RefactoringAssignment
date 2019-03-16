@@ -522,7 +522,16 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		int nextFreeId = 0;
 		// if file is empty or all records are empty start with ID 1 else look
 		// for last active record
-		if (file.length() == 0 || !isSomeoneToDisplay())
+		
+		
+		///////////////////////////////////////////////////////////////////
+		///Adter delete 'all records' and to go to next record it is calling
+		//this finction. At the same time isSomeoneToDisplay() function showing
+		//alert box. I have replaced it with application.isSomeoneToDisplay()
+		application.openReadFile(file.getAbsolutePath());
+		///if (file.length() == 0 || !isSomeoneToDisplay())
+		if (file.length() == 0 || !application.isSomeoneToDisplay())
+			//////////////////////////////////////////////////////////////////
 			nextFreeId++;
 		else {
 			lastRecord();// look for last active record
@@ -573,6 +582,11 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				if (isSomeoneToDisplay()) {
 					nextRecord();// look for next record
 					displayRecords(currentEmployee);
+					/////////////////////////////////////////////////
+				}else { /////If delete all records then set non enabled and
+					/////////set changed to false
+					setEnabled(false);
+					change = false;
 				} // end if
 			} // end if
 		} // end if
